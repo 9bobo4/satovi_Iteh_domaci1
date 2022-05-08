@@ -1,4 +1,9 @@
+<?php
 
+    include  'login.php';
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +25,10 @@
                 <h2 class="form-title">Uloguj se</h2>
               
                 <div class="form-group">
-                    <input type="email" class="form-input" name="email" id="emailL" placeholder="Your Email"/>
+                    <input type="email" class="form-input" name="emailL" id="emailL" placeholder="Your Email"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-input" name="password" id="passwordL" placeholder="Password"/>
+                    <input type="text" class="form-input" name="passwordL" id="passwordL" placeholder="Password"/>
                     <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                 </div>
                  
@@ -32,7 +37,7 @@
                     <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                 </div>
                 <div class="form-group">
-                    <input type="submit" name="submit" id="submit" class="form-submit" value="Uloguj se"/>
+                    <input type="submit" name="login" id="login" class="form-submit" value="Uloguj se"/>
                 </div>
                 
             </form>
