@@ -1,3 +1,32 @@
+<?php
+
+require 'config.php'; 
+require 'model/User.php';
+
+
+
+if(isset($_POST["registerBtn"])){
+    $email = $_POST["email"];
+    $passw = $_POST["password"];
+    $ime = $_POST["ime"];
+    $prezime = $_POST["prezime"];
+    $u = new User(null,$ime,$prezime,$email,$passw);
+
+    $rezultat = User::registrujSe($u,$conn);
+    if( $rezultat){
+        echo '<script>alert("USPESNO")</script>';
+        header('Location: index.php');
+    }else{
+        echo '<script>alert("NEUSPESNO")</script>';
+    }
+}
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +65,7 @@
                     <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                 </div>
                 <div class="form-group">
-                    <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
+                    <input type="submit" name="registerBtn" id="registerBtn" class="form-submit" value="Sign up"/>
                 </div>
             </form>
             <p class="loginhere">

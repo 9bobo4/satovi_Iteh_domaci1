@@ -28,6 +28,10 @@ class User{
         return $conn->query($upit);
     }
 
+    public static function registrujSe($user,$conn){
+        $upit = "Insert into users(email,lozinka,ime,prezime) values('$user->email','$user->lozinka','$user->ime','$user->prezime')";
+        return $conn->query($upit);
+    }
 }
 
 
