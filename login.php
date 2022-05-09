@@ -12,6 +12,8 @@
 
         $rezultat = User::ulogujSe($u,$conn);
         if(mysqli_num_rows($rezultat)>0){
+            $_SESSION["ulogovaniKorisnik"]= $email;
+            echo  $_SESSION['ulogovaniKorisnik'];
             echo '<script>alert("USPESNO")</script>';
             header('Location: home.php');
         }else{
