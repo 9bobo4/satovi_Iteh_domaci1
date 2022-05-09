@@ -24,7 +24,7 @@ class User{
 
 
     public static function ulogujSe($user,$conn){
-        $upit = "select * from users where email='$user->email' and lozinka='$user->password'";
+        $upit = "select * from users where email='$user->email' and lozinka='$user->lozinka'";
         return $conn->query($upit);
     }
 
