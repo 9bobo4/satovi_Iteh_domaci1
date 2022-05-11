@@ -1,7 +1,10 @@
 <?php
     include 'login.php';
+    include 'config.php';
+    include 'model/Sat.php';
 
 
+    $sviSatovi = Sat::vratiSveSatove($conn);
 
 ?>
 
@@ -37,31 +40,35 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">ID</th>
+                <th scope="col">Model</th>
+                <th scope="col">Brend</th>
+                <th scope="col">Cena</th>
+                <th scope="col">Materijal narukvice</th>
+                <th scope="col">Vrsta</th>
+
+
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                </tr>
+                <?php
+                    while($red=$sviSatovi->fetch_array()):
+                        
+                ?>
+                          <tr>
+                            <th scope="row"><?php echo $red['id']?></th>
+                            <td> <?php echo $red['model']?></td>
+                            <td> <?php echo $red['brend']?></td>
+                            <td> <?php echo $red['cena']?></td>
+                            <td> <?php echo $red['materijalNarukvice']?></td>
+                            <td> <?php echo $red['naziv']?></td>
+
+                          
+                        </tr>
+
+
+
+                <?php endwhile;?>
             </tbody>
         </table>
 
