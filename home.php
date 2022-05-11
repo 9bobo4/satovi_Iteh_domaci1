@@ -2,9 +2,12 @@
     include 'login.php';
     include 'config.php';
     include 'model/Sat.php';
+    include 'model/Mehanizam.php';
 
 
     $sviSatovi = Sat::vratiSveSatove($conn);
+
+    $sveVrste = Mehanizam::vratiSveVrste($conn);
 
 ?>
 
@@ -19,6 +22,20 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/pocetnaStyle.css">
+ 
+    
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  
+    
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    
 </head>
 <body>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -37,6 +54,8 @@
                 </nav>
 
     <div class="tabelaPocetna">
+    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#addModal" >Dodaj   <i class="fas fa-plus"></i></button>
+    <br><br><br><br>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -46,7 +65,7 @@
                 <th scope="col">Cena</th>
                 <th scope="col">Materijal narukvice</th>
                 <th scope="col">Vrsta</th>
-
+                <th scope="col">Opcije</th>
 
                 </tr>
             </thead>
@@ -62,7 +81,12 @@
                             <td> <?php echo $red['cena']?></td>
                             <td> <?php echo $red['materijalNarukvice']?></td>
                             <td> <?php echo $red['naziv']?></td>
-
+                            <td>
+                                <form action="" method="post">
+                                <button type="button" class="btn btn-success"    data-toggle="modal" data-target="#updateModal" ?>      <i class="fas fa-pencil-alt"></i> </button> 
+                                <button type="button" class="btn btn-danger"  onclick="obrisiSat(<?php echo $red['id']?>)"  ><i class="fas fa-trash"></i></button>  
+                                </form>
+                            </td>
                           
                         </tr>
 
@@ -79,7 +103,105 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+
+
+        <!-- Modal za add new sat -->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="lblAddNewModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="titleAdd">Dodaj novi sat</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                              
+                        <form  id="addform" style="max-width:500px;margin:auto" method="POST" enctype="multipart/form-data">
+ 
+                            <div class="input-container">
+                                <i class="fa fa-user icon"></i>
+                                <input class="input-field" type="text" placeholder="Model" name="model" id="model" required>
+                            </div>
+
+                            <div class="input-container">
+                                <i class="fa fa-pencil icon"></i>
+                                <input class="input-field" type="text" placeholder="Brend" name="brend" id="brend" required>
+                            </div>
+                            
+                            <div class="input-container">
+                            <i class="fa fa-tag icon"></i>
+                                <input class="input-field" type="text" placeholder="Cena" name="cena" id="cena" required>
+                            </div>
+
+                            <div class="input-container">
+                            <i class="fa fa-tag icon"></i>
+                                <input class="input-field" type="text" placeholder="Materijal narukvice" name="materijal" id="materijal" required>
+                            </div>
+                            <div class="input-container">
+                             <i class="fa fa-tag icon"></i>
+                             <label for="vrste">Mehanizam:</label>
+
+                            <select name="vrste" id="vrste">
+                                <?php while($redV=$sveVrste->fetch_array()):?>
+                                    <option value=<?php echo $redV['idMeh']?>><?php echo $redV['naziv']?></option>
+                                <?php endwhile;?>
+                           
+                            
+                            </select>
+                            </div>
+
+                       
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="add" name="add" onclick="dodaj()"> <i class="fas fa-plus"></i> Add</button>
+                        </div>                   
+                    
+                        </form>
+
+
+                        </div>
+                        
+                       
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="js/main.js"></script>
+ <script src="https://code.jquery.com/jquery-3.1.1.min.js">
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>

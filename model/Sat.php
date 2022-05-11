@@ -16,6 +16,7 @@ class Sat{
         $this->brend=$brend;
         $this->cena=$cena;
         $this->mehanizamVrsta=$mehanizamVrsta;
+        $this->materijalNarukvice=$materijalNarukvice;
 
     }
 
@@ -25,9 +26,19 @@ class Sat{
     }
 
 
+    public static function obrisiSat($id,$conn){
+        $upit = "delete from satovi where id=$id";
+        return $conn->query($upit);
+    }
 
+    public static function dodajSat($sat, $conn){
+    
+        $query= "insert into satovi(model,brend,cena,materijalNarukvice,mehanizamVrsta ) values('$sat->model','$sat->brend',$sat->cena,'$sat->materijalNarukvice',$sat->mehanizamVrsta )";
 
-
+        return $conn->query($query);
+        
+    
+    }
 
 
 

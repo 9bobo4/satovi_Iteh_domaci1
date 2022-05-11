@@ -9,6 +9,19 @@ class Mehanizam{
         $this->id=$id;
         $this->naziv=$naziv; 
     }
+
+
+    public static function vratiSveVrste($conn){
+        $upit = "select * from mehanizamVrsta";
+        return $conn->query($upit);
+    }
+
+
+
+
+
+
+
 }
 
 
