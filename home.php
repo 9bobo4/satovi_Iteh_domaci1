@@ -188,6 +188,8 @@
                               
                         <form  id="updateform" style="max-width:500px;margin:auto" method="POST" enctype="multipart/form-data">
  
+                            <input type="text" name="idU" id="idU" hidden>
+
                             <div class="input-container">
                                 <i class="fa fa-user icon"></i>
                                 <input class="input-field" type="text" placeholder="Model" name="modelU" id="modelU" required>
@@ -211,7 +213,7 @@
                              <i class="fa fa-tag icon"></i>
                              <label for="vrste">Mehanizam:</label>
 
-                            <select name="vrste" id="vrsteU">
+                            <select name="vrsteU" id="vrsteU">
                                 <?php while($redV=$sveVrste1->fetch_array()):?>
                                     <option value=<?php echo $redV['idMeh']?>><?php echo $redV['naziv']?></option>
                                 <?php endwhile;?>
@@ -223,7 +225,7 @@
                        
                             <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="update" name="update" onclick="dodaj()"> <i class="fas fa-plus"></i> Azuriraj</button>
+                            <button type="submit" class="btn btn-primary" id="update" name="update" onclick="potvrdiAzuriranje()"> Azuriraj</button>
                         </div>                   
                     
                         </form>

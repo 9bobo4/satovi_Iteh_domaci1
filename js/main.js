@@ -52,7 +52,7 @@ function azurirajSat(updateid){
     $.post("handler/get.php",{updateid:updateid},function(data,status){
 
         var sat = JSON.parse(data);
-
+        $('#idU').val(sat.id);
         $('#modelU').val(sat.model);
         $('#brendU').val(sat.brend);
         $('#cenaU').val(sat.cena);
@@ -67,4 +67,35 @@ function azurirajSat(updateid){
 
 
 
+}
+
+function potvrdiAzuriranje(){
+
+    var form = $('#updateform')[0];
+    var formData = new FormData(form);
+    event.preventDefault();  
+    console.log(formData);
+
+
+    request = $.ajax({  
+        url: 'handler/update.php',  
+        type: 'post', 
+        processData: false,
+        contentType: false,
+        data: formData
+    });
+
+    request.done(function (response, textStatus, jqXHR) {
+        
+
+            console.log(response);
+            alert("Sat azuriran ");
+            console.log("Uspesno azuriranje");
+            location.reload(true);
+        
+    });
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        console.error('Greska: ' + textStatus, errorThrown);
+    });
 }

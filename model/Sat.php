@@ -44,8 +44,14 @@ class Sat{
     }
 
 
-    
 
+
+    public static function azurirajSat($sat,$conn){
+
+        $query = "update satovi set model='$sat->model', brend = '$sat->brend', cena = $sat->cena, materijalNarukvice='$sat->materijalNarukvice', mehanizamVrsta=$sat->mehanizamVrsta where id = $sat->id";
+        return $conn->query($query);
+
+    }
 
 
 
