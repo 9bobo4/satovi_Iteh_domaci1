@@ -47,3 +47,24 @@ function obrisiSat(deleteid){
     });
 };
 
+function azurirajSat(updateid){
+
+    $.post("handler/get.php",{updateid:updateid},function(data,status){
+
+        var sat = JSON.parse(data);
+
+        $('#modelU').val(sat.model);
+        $('#brendU').val(sat.brend);
+        $('#cenaU').val(sat.cena);
+        $('#materijalU').val(sat.materijalNarukvice);
+        $('#vrsteU').val(sat.mehanizamVrsta);
+
+
+
+
+    });
+
+
+
+
+}

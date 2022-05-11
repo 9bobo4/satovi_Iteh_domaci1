@@ -24,7 +24,10 @@ class Sat{
         $upit = "select * from satovi s join mehanizamvrsta m on s.mehanizamVrsta=m.idMeh";
         return $conn->query($upit);
     }
-
+    public static function vratiSat($id,$conn){
+        $upit = "select * from satovi s join mehanizamvrsta m on s.mehanizamVrsta=m.idMeh where id=$id";
+        return $conn->query($upit);
+    }
 
     public static function obrisiSat($id,$conn){
         $upit = "delete from satovi where id=$id";
@@ -40,6 +43,8 @@ class Sat{
     
     }
 
+
+    
 
 
 
