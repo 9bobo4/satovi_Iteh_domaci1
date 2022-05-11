@@ -39,7 +39,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     
 </head>
-<body>
+<body  >
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#"><?php echo $_SESSION['ulogovaniKorisnik']?></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,8 +57,21 @@
 
     <div class="tabelaPocetna">
     <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#addModal" >Dodaj   <i class="fas fa-plus"></i></button>
+    <div class="form-outline"    style="float:right">                    
+                        <input type="search" id="pretraga" class="form-control" onkeyup="pretragaPoBrendu()"    placeholder="Search.." />
+                       
+                    </div>
+    <button type="button" class="btn btn-primary" style="float:right">
+                        <i class="fas fa-search"></i>
+                      </button>
+                      <br><br>
+                      <button type="button" class="btn btn-warning" onclick="sortiraj()">Sortiraj<i class="fa fa-sort" aria-hidden="true" ></i></button>
+                      <select name="kriterijum" id="kriterijum" class="criteria">
+                          <option value="price">Cena</option> 
+                          <option value="name">Naziv</option>
+                    </select>
     <br><br><br><br>
-        <table class="table table-striped">
+        <table class="table table-striped" id="satoviTbl">
             <thead>
                 <tr>
                 <th scope="col">ID</th>
