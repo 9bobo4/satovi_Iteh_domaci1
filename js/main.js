@@ -148,9 +148,9 @@ function sortiraj() {
         rows = table.rows;
         for (i = 1; i < (rows.length - 1); i++) {
             for (j = i + 1; j < rows.length; j++) {
-                x = rows[i].getElementsByTagName("TD")[2];
+                x = rows[i].getElementsByTagName("TD")[2]; //<td>100</td>
                 y = rows[j].getElementsByTagName("TD")[2];
-                z = parseInt(x.innerHTML);
+                z = parseInt(x.innerHTML);//100
                 k = parseInt(y.innerHTML);
                 if (z > k) {
                     rows[i].parentNode.insertBefore(rows[j], rows[i]);

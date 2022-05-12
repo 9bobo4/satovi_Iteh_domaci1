@@ -1,6 +1,13 @@
+ 
+
 .tabelaPocetna{
 
-    padding: 10%;
+    padding: 20%;
+    background-color: rgb(204, 204, 194);
 
+}
 
+.nav-link{
+    
+    color:black
 }

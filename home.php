@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/pocetnaStyle.css">
+ 
  
     
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
@@ -37,25 +37,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/pocetnaStyle.css">
     
 </head>
-<body  >
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#"><?php echo $_SESSION['ulogovaniKorisnik']?></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                    <li class="nav-item active" >
-                        <a class="nav-link" href="logout.php"  >Odjavi se</a>
-                    </li>
-                    
-                    </ul>
-                </div>
+<body style="   background-image: url('https://www.teahub.io/photos/full/30-308543_watch-high-definition-images-watches-wallpapers-hd.jpg');    background-repeat: no-repeat;   background-attachment: fixed;  background-size: cover;"  >
+                <nav class="navbar navbar  bg-light">
+                    <a class="navbar-brand" href="#"><?php echo $_SESSION['ulogovaniKorisnik']?></a>
+                    <a class="nav-link" href="logout.php"   >Odjavi se</a>
+                
                 </nav>
 
-    <div class="tabelaPocetna">
+    <div class="tabelaPocetna" style="background-color: 	rgb(208,208,208,0.8) ;   border-radius: 5px; padding:30px; margin:10%">
     <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#addModal" >Dodaj   <i class="fas fa-plus"></i></button>
     <div class="form-outline"    style="float:right">                    
                         <input type="search" id="pretraga" class="form-control" onkeyup="pretragaPoBrendu()"    placeholder="Search.." />
@@ -68,7 +60,7 @@
                       <button type="button" class="btn btn-warning" onclick="sortiraj()">Sortiraj<i class="fa fa-sort" aria-hidden="true" ></i></button>
                       <select name="kriterijum" id="kriterijum" class="criteria">
                           <option value="price">Cena</option> 
-                          <option value="name">Naziv</option>
+                          <option value="name">Model</option>
                     </select>
     <br><br><br><br>
         <table class="table table-striped" id="satoviTbl">
@@ -91,11 +83,11 @@
                 ?>
                           <tr>
                             <th scope="row"><?php echo $red['id']?></th>
-                            <td> <?php echo $red['model']?></td>
+                            <td>  <?php echo $red['model']?></td>
                             <td> <?php echo $red['brend']?></td>
                             <td> <?php echo $red['cena']?></td>
                             <td> <?php echo $red['materijalNarukvice']?></td>
-                            <td> <?php echo $red['naziv']?></td>
+                            <td> <?php echo $red['naziv']?></td> 
                             <td>
                                 <form action="" method="post">
                                 <button type="button" class="btn btn-success"    data-toggle="modal" data-target="#updateModal" onclick="azurirajSat(<?php echo $red['id']?>)"  >   <i class="fas fa-pencil-alt"></i> </button> 
@@ -137,26 +129,26 @@
                         <form  id="addform" style="max-width:500px;margin:auto" method="POST" enctype="multipart/form-data">
  
                             <div class="input-container">
-                                <i class="fa fa-user icon"></i>
+                            <i class="fa fa-clock"></i>
                                 <input class="input-field" type="text" placeholder="Model" name="model" id="model" required>
                             </div>
-
+                            <br>
                             <div class="input-container">
                                 <i class="fa fa-pencil icon"></i>
                                 <input class="input-field" type="text" placeholder="Brend" name="brend" id="brend" required>
                             </div>
-                            
+                            <br>
                             <div class="input-container">
                             <i class="fa fa-tag icon"></i>
                                 <input class="input-field" type="text" placeholder="Cena" name="cena" id="cena" required>
                             </div>
-
+                            <br>
                             <div class="input-container">
-                            <i class="fa fa-tag icon"></i>
+                            <i class="fa fa-pencil icon"></i>
                                 <input class="input-field" type="text" placeholder="Materijal narukvice" name="materijal" id="materijal" required>
-                            </div>
+                            </div> <br>
                             <div class="input-container">
-                             <i class="fa fa-tag icon"></i>
+                            <i class="fa fa-gear"></i>
                              <label for="vrste">Mehanizam:</label>
 
                             <select name="vrste" id="vrste">
@@ -167,7 +159,7 @@
                             
                             </select>
                             </div>
-
+                            <br>
                        
                             <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -204,26 +196,26 @@
                             <input type="text" name="idU" id="idU" hidden>
 
                             <div class="input-container">
-                                <i class="fa fa-user icon"></i>
+                                <i class="fa fa-clock"></i>
                                 <input class="input-field" type="text" placeholder="Model" name="modelU" id="modelU" required>
                             </div>
-
+                            <br>
                             <div class="input-container">
                                 <i class="fa fa-pencil icon"></i>
                                 <input class="input-field" type="text" placeholder="Brend" name="brendU" id="brendU" required>
                             </div>
-                            
+                            <br>
                             <div class="input-container">
                             <i class="fa fa-tag icon"></i>
                                 <input class="input-field" type="text" placeholder="Cena" name="cenaU" id="cenaU" required>
                             </div>
-
+                            <br>
                             <div class="input-container">
-                            <i class="fa fa-tag icon"></i>
+                            <i class="fa fa-pencil icon"></i>
                                 <input class="input-field" type="text" placeholder="Materijal narukvice" name="materijalU" id="materijalU" required>
-                            </div>
+                            </div> <br>
                             <div class="input-container">
-                             <i class="fa fa-tag icon"></i>
+                             <i class="fa fa-gear"></i>
                              <label for="vrste">Mehanizam:</label>
 
                             <select name="vrsteU" id="vrsteU">
@@ -233,7 +225,7 @@
                            
                             
                             </select>
-                            </div>
+                            </div> <br>
 
                        
                             <div class="modal-footer">

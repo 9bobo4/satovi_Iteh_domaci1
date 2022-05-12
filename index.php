@@ -18,7 +18,7 @@
 <div class="main">
 
 <section class="signup">
-    <!-- <img src="images/signup-bg.jpg" alt=""> -->
+  
     <div class="container">
         <div class="signup-content">
             <form method="POST" id="signup-form" class="signup-form">
@@ -28,7 +28,7 @@
                     <input type="email" class="form-input" name="emailL" id="emailL" placeholder="Your Email"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-input" name="passwordL" id="passwordL" placeholder="Password"/>
+                    <input type="password" class="form-input" name="passwordL" id="passwordL" placeholder="Password"/>
                     <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                 </div>
                  
